@@ -1,8 +1,8 @@
 <configuration>
 
   <!-- Uncomment to enable file-based logging with 
-       daily (or size exceeding) gzip archival.
-       Also uncomment the "ROLLING" reference in <root>.
+     daily (or size exceeding) gzip archival.
+    Also uncomment the "ROLLING" reference in <root>.
   <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <file>mylog.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -20,7 +20,7 @@
 
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <!-- encoders are assigned the type
-         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+      ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
     <encoder>
       <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
     </encoder>
