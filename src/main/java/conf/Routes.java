@@ -34,7 +34,7 @@ public class Routes implements ApplicationRoutes {
     router.GET().route("/login").with(LoginController::index);
     router.POST().route("/login/acceder").with(LoginController::acceder);
     router.GET().route("/login/ver").with(LoginController::ver);
-    router.GET().route("/login/salir").with(LoginController::salir);
+    router.GET().route("/login/cerrar").with(LoginController::cerrar);
     //errores
     router.GET().route("/error/access/{numero}").with(ErrorController::access);
 
@@ -54,6 +54,7 @@ public class Routes implements ApplicationRoutes {
     ///////////////////////////////////////////////////////////////////////
     // Index / Catchall shows index page
     ///////////////////////////////////////////////////////////////////////
-    //router.GET().route("/.*").with(ApplicationController::index);
+    router.GET().route("/.*").with(() -> Results.redirect("/error/access/404"));
+    router.POST().route("/.*").with(ErrorController::errorPOST);
   }
 }

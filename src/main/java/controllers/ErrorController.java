@@ -1,11 +1,11 @@
 package controllers;
 
 import ninja.Context;
-import ninja.FilterWith;
 import ninja.Result;
 import ninja.Results;
 import ninja.params.PathParam;
 import com.google.inject.Singleton;
+import org.json.JSONObject;
 import controllers.ApplicationController;
 import helpers.ErrorHelper;
 
@@ -44,4 +44,15 @@ public class ErrorController extends ApplicationController {
     result.status(500);
     return result;
   }  
+
+  public Result errorPOST() {      
+    String rpta = "";
+    int status = 404;
+    String[] cuerpoMensaje = {"Recurso no disponible" , "Error 404"};
+    JSONObject rptaMensaje = new JSONObject();
+    rptaMensaje.put("tipo_mensaje", "error");
+    rptaMensaje.put("mensaje", cuerpoMensaje);
+    rpta = rptaMensaje.toString();
+    return Results.text().render(rpta).status(status);
+  }
 }

@@ -8,11 +8,13 @@ import ninja.session.Session;
 import com.google.inject.Singleton;
 import java.text.DateFormat;
 import java.util.Date;
+import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import providers.accesos.UsuarioProvider;
 import providers.accesos.SistemaProvider;
 import controllers.ApplicationController;
 import filters.SessionViewFalseFilter;
+import filters.SessionViewTrueFilter;
 import org.javalite.http.HttpException;
 import helpers.LoginHelper;
 
@@ -73,12 +75,17 @@ public class LoginController extends ApplicationController {
     return result;
   }  
 
+  @FilterWith(SessionViewTrueFilter.class)
   public Result ver(Session session){
-    String rpta = "<h1>Usuario Logeado</h1><ul><li>" + session.get("usuario") + "</li><li>" +  session.get("tiempo") + "</li><li>" + session.get("estado") + "</li></ul>";
+    JSONObject rptaMensaje = new JSONObject();
+    rptaMensaje.put("usuario", session.get("usuario"));
+    rptaMensaje.put("tiempo", session.get("tiempo"));
+    rptaMensaje.put("estado", session.get("estado"));
+    String rpta = rptaMensaje.toString();
     return Results.text().render(rpta);
   }
 
-  public Result salir(Session session){
+  public Result cerrar(Session session){
     session.clear();
     return Results.redirect("/login");
   }
