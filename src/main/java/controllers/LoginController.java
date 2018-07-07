@@ -1,6 +1,7 @@
 package controllers;
 
 import ninja.Context;
+import ninja.FilterWith;
 import ninja.Result;
 import ninja.Results;
 import ninja.session.Session;
@@ -11,11 +12,13 @@ import java.text.SimpleDateFormat;
 import providers.accesos.UsuarioProvider;
 import providers.accesos.SistemaProvider;
 import controllers.ApplicationController;
+import filters.SessionFalseFilter;
 import org.javalite.http.HttpException;
 import helpers.LoginHelper;
 
 @Singleton
 public class LoginController extends ApplicationController {
+  @FilterWith(SessionFalseFilter.class)
   public Result index() {
     Result result = Results.html().template("/views/login/index.ftl.html");
     result.render("title", "Bienvenido");
@@ -36,9 +39,6 @@ public class LoginController extends ApplicationController {
       String validacionSistema = SistemaProvider.validarUsuario(usuario);
       if(validacionSistema.equalsIgnoreCase("1")){
         String validacionUsuario = UsuarioProvider.validarUsuario(usuario, contrasenia);
-        System.out.println("1 +++++++++++++++++++++++++++++");
-        System.out.println(validacionUsuario);
-        System.out.println("2 +++++++++++++++++++++++++++++");
         if(!validacionUsuario.equalsIgnoreCase("1")){
           continuar = false;
           mensaje = "Usuario y/o contraseña incorrectos";
@@ -55,15 +55,12 @@ public class LoginController extends ApplicationController {
       continuar = false;
       mensaje = "Se ha producido un error";
     }
-    System.out.println("1 +++++++++++++++++++++++++++++");
-    System.out.println(continuar);
-    System.out.println("2 +++++++++++++++++++++++++++++");
     if(continuar == true){
       DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); Date date = new Date();
       session.put("usuario", usuario);
       session.put("estado", "activo");
       session.put("tiempo", dateFormat.format(date));
-      result = Results.redirect("/");
+      result = Results.redirect("/ubicaciones/#/");
     }else{
       result = Results.html().template("/views/login/index.ftl.html");
       result.render("title", "Bienvenido");
@@ -75,4 +72,14 @@ public class LoginController extends ApplicationController {
     }
     return result;
   }  
+
+  public Result ver(Session session){
+    String rpta = "<h1>Usuario Logeado</h1><ul><li>" + session.get("usuario") + "</li><li>" +  session.get("tiempo") + "</li><li>" + session.get("estado") + "</li></ul>";
+    return Results.text().render(rpta);
+  }
+
+  public Result salir(Session session){
+    session.clear();
+    return Results.redirect("/login");
+  }
 }
