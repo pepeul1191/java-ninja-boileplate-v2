@@ -194,8 +194,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
       <artifactId>json</artifactId>
       <version>20170516</version>
     </dependency>
-    <!-- Cliente REST -->
-
     <!-- If you want to deploy to a war please -->
     <!-- comment ninja-standalone dependency and  -->
     <!-- uncomment the dependency for ninja-servlet -->

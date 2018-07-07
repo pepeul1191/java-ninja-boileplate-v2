@@ -21,13 +21,16 @@ import ninja.AssetsController;
 import ninja.Router;
 import ninja.application.ApplicationRoutes;
 import controllers.ApplicationController;
+import controllers.LoginController;
 import controllers.ubicaciones.DepartamentoController;
 import controllers.ubicaciones.UbicacionController;
 
 public class Routes implements ApplicationRoutes {
   @Override
   public void init(Router router) {  
-    String x = AssetsController.ASSETS_DIR;
+    //login
+    router.GET().route("/login").with(LoginController::index);
+    router.POST().route("/login/acceder").with(LoginController::acceder);
     router.GET().route("/").with(ApplicationController::index);
     router.GET().route("/departamento/listar").with(DepartamentoController::listarDB);
     router.GET().route("/ubicaciones/").with(UbicacionController::index);
