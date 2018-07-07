@@ -1,8 +1,8 @@
-package helpers.ubicaciones;
+package helpers;
 
 import conf.ApplicationHelper;
 
-public class UbicacionHelper extends ApplicationHelper{
+public class HomeHelper extends ApplicationHelper{
   public static String[] indexCSS() {
     switch(constants.getString("ambiente_static")) {
       case "desarrollo":

@@ -21,7 +21,7 @@ import ninja.AssetsController;
 import ninja.Router;
 import ninja.Results;
 import ninja.application.ApplicationRoutes;
-import controllers.ApplicationController;
+import controllers.HomeController;
 import controllers.LoginController;
 import controllers.ubicaciones.DepartamentoController;
 import controllers.UbicacionesController;
@@ -37,14 +37,14 @@ public class Routes implements ApplicationRoutes {
     router.GET().route("/login/cerrar").with(LoginController::cerrar);
     //errores
     router.GET().route("/error/access/{numero}").with(ErrorController::access);
-
+    //home
+    router.GET().route("/").with(HomeController::index);
+    //ubicaciones
     router.GET().route("/ubicaciones").with(() -> Results.redirect("/ubicaciones/#"));
     router.GET().route("/ubicaciones/").with(UbicacionesController::index);
-    
-    router.GET().route("/").with(ApplicationController::index);
+    //servicios REST
     router.GET().route("/departamento/listar").with(DepartamentoController::listarDB);
     router.POST().route("/departamento/guardar").with(DepartamentoController::guardar);
-    router.GET().route("/hello_world.json").with(ApplicationController::helloWorldJson);
     
     ///////////////////////////////////////////////////////////////////////
     // Assets (pictures / javascript)

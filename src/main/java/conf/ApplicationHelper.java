@@ -2,6 +2,9 @@ package conf;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
+import org.javalite.http.Http;
+import org.javalite.http.HttpException;
+import org.javalite.http.Get;
 
 public class ApplicationHelper{
   protected static Config constants = ConfigFactory.parseResources("conf/application.conf");
@@ -22,5 +25,34 @@ public class ApplicationHelper{
       rpta = rpta + temp;
     }
     return rpta;
-  }  
+  }
+  
+  public static String menuModulos(){
+    String rpta = "";
+    try {
+      Get req = Http.get(constants.getString("accesos.url") + "modulo/menu/" + constants.getString("sistema_id"))
+        .header(constants.getString("accesos.csrf_key"), constants.getString("accesos.csrf_value"));
+      rpta = req.text();
+		} catch (HttpException e) {
+			//e.printStackTrace();
+      rpta = "[]";
+    }
+    return rpta;
+  }
+
+  public static String itemsModulo(String modulo){
+    String rpta = "";
+    try {
+      String url = constants.getString("accesos.url") + 
+        "item/menu?sistema_id=" + constants.getString("sistema_id") + 
+        "&modulo=" + modulo;
+      Get req = Http.get(url)
+        .header(constants.getString("accesos.csrf_key"), constants.getString("accesos.csrf_value"));
+      rpta = req.text();
+		} catch (HttpException e) {
+			//e.printStackTrace();
+      rpta = "[]"; 
+    }
+    return rpta;
+  }
 }
