@@ -7,7 +7,7 @@ import ninja.Result;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
-public class SessionTrueFilter implements Filter {
+public class SessionViewFalseFilter implements Filter {
 	@Override
 	public Result filter(FilterChain filterChain, Context context) {
 		Result result = filterChain.next(context);
@@ -21,8 +21,8 @@ public class SessionTrueFilter implements Filter {
       } catch (java.lang.NullPointerException e) {
         error = true;
       }
-      if(error == true){
-        return result.redirect(constants.getString("base_url") + "error/access/505");
+      if(error == false){
+        return result.redirect(constants.getString("base_url") + "ubicaciones/#/");
       }
 		}
 		return result;

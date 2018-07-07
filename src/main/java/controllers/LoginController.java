@@ -12,13 +12,13 @@ import java.text.SimpleDateFormat;
 import providers.accesos.UsuarioProvider;
 import providers.accesos.SistemaProvider;
 import controllers.ApplicationController;
-import filters.SessionFalseFilter;
+import filters.SessionViewFalseFilter;
 import org.javalite.http.HttpException;
 import helpers.LoginHelper;
 
 @Singleton
 public class LoginController extends ApplicationController {
-  @FilterWith(SessionFalseFilter.class)
+  @FilterWith(SessionViewFalseFilter.class)
   public Result index() {
     Result result = Results.html().template("/views/login/index.ftl.html");
     result.render("title", "Bienvenido");

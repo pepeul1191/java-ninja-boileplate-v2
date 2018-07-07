@@ -1,16 +1,17 @@
-package controllers.ubicaciones;
+package controllers;
 
 import ninja.Result;
 import ninja.Results;
 import ninja.FilterWith;
+import ninja.Context;
 import com.google.inject.Singleton;
 import controllers.ApplicationController;
 import helpers.ubicaciones.UbicacionHelper;
-import filters.SessionTrueFilter;
+import filters.SessionViewTrueFilter;
 
 @Singleton
-public class UbicacionController extends ApplicationController {
-  @FilterWith(SessionTrueFilter.class)
+public class UbicacionesController extends ApplicationController {
+  @FilterWith(SessionViewTrueFilter.class)
   public Result index() {
     Result result = Results.html().template("/views/ubicaciones/index.ftl.html");
     result.render("title", "Bienvenido");
@@ -22,5 +23,5 @@ public class UbicacionController extends ApplicationController {
     result.render("load_css", UbicacionHelper.loadCSS(UbicacionHelper.indexCSS()));
     result.render("load_js", UbicacionHelper.loadJS(UbicacionHelper.indexJS()));
     return result;
-  }  
+  }
 }

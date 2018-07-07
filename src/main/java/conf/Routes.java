@@ -19,11 +19,13 @@ package conf;
 
 import ninja.AssetsController;
 import ninja.Router;
+import ninja.Results;
 import ninja.application.ApplicationRoutes;
 import controllers.ApplicationController;
 import controllers.LoginController;
 import controllers.ubicaciones.DepartamentoController;
-import controllers.ubicaciones.UbicacionController;
+import controllers.UbicacionesController;
+import controllers.ErrorController;
 
 public class Routes implements ApplicationRoutes {
   @Override
@@ -33,12 +35,17 @@ public class Routes implements ApplicationRoutes {
     router.POST().route("/login/acceder").with(LoginController::acceder);
     router.GET().route("/login/ver").with(LoginController::ver);
     router.GET().route("/login/salir").with(LoginController::salir);
+    //errores
+    router.GET().route("/error/access/{numero}").with(ErrorController::access);
 
+    router.GET().route("/ubicaciones").with(() -> Results.redirect("/ubicaciones/#"));
+    router.GET().route("/ubicaciones/").with(UbicacionesController::index);
+    
     router.GET().route("/").with(ApplicationController::index);
     router.GET().route("/departamento/listar").with(DepartamentoController::listarDB);
-    router.GET().route("/ubicaciones/").with(UbicacionController::index);
     router.POST().route("/departamento/guardar").with(DepartamentoController::guardar);
     router.GET().route("/hello_world.json").with(ApplicationController::helloWorldJson);
+    
     ///////////////////////////////////////////////////////////////////////
     // Assets (pictures / javascript)
     ///////////////////////////////////////////////////////////////////////    
