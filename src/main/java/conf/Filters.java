@@ -20,6 +20,7 @@ package conf;
 import java.util.List;
 import ninja.Filter;
 import filters.BeforeAllFilter;
+import filters.LogFilter;
 
 public class Filters implements ninja.application.ApplicationFilters {
   @Override
@@ -27,5 +28,6 @@ public class Filters implements ninja.application.ApplicationFilters {
     // Add your application - wide filters here
     // filters.add(MyFilter.class);
     filters.add(filters.BeforeAllFilter.class);
+    filters.add(filters.LogFilter.class);
   }
 }
