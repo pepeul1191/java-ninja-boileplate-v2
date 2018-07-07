@@ -14,8 +14,8 @@ public class UbicacionController extends ApplicationController {
     result.render("title", "Bienvenido");
     result.render("constants", this.constants);
     result.render("mensaje", false);
-    result.render("modulos", "[{\"url\":\"accesos\",\"nombre\":\"Accesos\"}]");
-    result.render("items", "[{\"subtitulo\":\"Opciones\",\"items\":[{\"item\":\"Gestion de Sistemas\",\"url\":\"accesos/#/sistema\"},{\"item\":\"Gestion de Usuarios\",\"url\":\"accesos/#/usuario\"}]}]");
+    result.render("modulos", "[{\"url\":\"\",\"nombre\":\"Ubicaciones\"}]");
+    result.render("items", "[{\"subtitulo\":\"\",\"items\":[{\"item\":\"Ubicaciones del Perú\",\"url\":\"ubicaciones/#/\"},{\"item\":\"Autocompletar\",\"url\":\"ubicaciones/#/autocompletar\"}]}]");
     result.render("data", "{\"modulo\":\"Accesos\"}");
     result.render("load_css", UbicacionHelper.loadCSS(UbicacionHelper.indexCSS()));
     result.render("load_js", UbicacionHelper.loadJS(UbicacionHelper.indexJS()));

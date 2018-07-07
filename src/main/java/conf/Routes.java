@@ -30,7 +30,8 @@ public class Routes implements ApplicationRoutes {
     String x = AssetsController.ASSETS_DIR;
     router.GET().route("/").with(ApplicationController::index);
     router.GET().route("/departamento/listar").with(DepartamentoController::listarDB);
-    router.GET().route("/ubicaciones").with(UbicacionController::index);
+    router.GET().route("/ubicaciones/").with(UbicacionController::index);
+    router.POST().route("/departamento/guardar").with(DepartamentoController::guardar);
     router.GET().route("/hello_world.json").with(ApplicationController::helloWorldJson);
     ///////////////////////////////////////////////////////////////////////
     // Assets (pictures / javascript)

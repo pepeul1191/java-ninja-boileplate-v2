@@ -4,12 +4,8 @@ var ubicacionesRouter = Backbone.Router.extend({
   initialize: function() {
   },
   routes: {
-    "": "index",
-    "ubicacion": "ubicacion",
+    "": "ubicacion",
     "*actions" : "default",
-  },
-  index: function(){
-    //window.location.href = BASE_URL + "#/ubicacion";
   },
   ubicacion: function() {
     if(this.ubicacicionView == null){
