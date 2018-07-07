@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import conf.Database;
 import controllers.ApplicationController;
-import models.Departamento;
+import models.ubicaciones.Departamento;
 
 @Singleton
 public class DepartamentoController extends ApplicationController{
