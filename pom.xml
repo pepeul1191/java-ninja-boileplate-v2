@@ -132,6 +132,20 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
           </execution>
         </executions>
       </plugin>
+      <!-- Instrumentacion para usar JavaLite -->
+      <plugin>
+        <groupId>org.javalite</groupId>
+        <artifactId>activejdbc-instrumentation</artifactId>
+        <version>1.4.13</version>
+        <executions>
+          <execution>
+            <phase>process-classes</phase>
+              <goals>
+                <goal>instrument</goal>
+              </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
     <resources>
       <resource>
