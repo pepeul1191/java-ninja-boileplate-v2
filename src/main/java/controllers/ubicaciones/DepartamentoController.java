@@ -1,6 +1,7 @@
 package controllers.ubicaciones;
 
 import ninja.Context;
+import ninja.FilterWith;
 import ninja.Result;
 import ninja.Results;
 import com.google.inject.Singleton;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import conf.Database;
 import controllers.ApplicationController;
+import filters.CsrfHeaderFilter;
 import models.ubicaciones.Departamento;
 
 @Singleton
@@ -18,7 +20,7 @@ public class DepartamentoController extends ApplicationController{
     return Results.html();
   }
   
-  //@FilterWith(CorsHeadersFilter.class)
+  @FilterWith(CsrfHeaderFilter.class)
   public Result listarDB() {      
     String rpta = "";
     int status = 200;

@@ -47,7 +47,7 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
     String URL_INDEX = "/";
     String URL_HELLO_WORLD_JSON = "/hello_world.json";
     
-    @Test
+    /*@Test
     public void testGetIndex() {
     
         Response response = makeRequest(
@@ -73,6 +73,6 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
         assertThat(simplePojo.content, CoreMatchers.equalTo("Hello World! Hello Json!"));
 
     
-    }
+    }*/
 
 }
