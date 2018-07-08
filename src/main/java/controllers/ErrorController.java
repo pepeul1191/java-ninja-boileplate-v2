@@ -4,6 +4,9 @@ import ninja.Context;
 import ninja.Result;
 import ninja.Results;
 import ninja.params.PathParam;
+
+import java.util.Arrays;
+
 import com.google.inject.Singleton;
 import org.json.JSONObject;
 import controllers.ApplicationController;
@@ -54,5 +57,19 @@ public class ErrorController extends ApplicationController {
     rptaMensaje.put("mensaje", cuerpoMensaje);
     rpta = rptaMensaje.toString();
     return Results.text().render(rpta).status(status);
+  }
+
+  public Result errorGET(Context context) {
+    String resourceString = context.getRequestUri();
+    System.out.println(resourceString);
+    String[] resourceArray = resourceString.split("\\.");
+    System.out.println(resourceArray[0]);
+    String extension = resourceArray[resourceArray.length -1];
+    String[] extensionesArray = {"ico", "css", "js", "img", "map", "html"};
+    if(Arrays.asList(extensionesArray).contains(extension)){
+      return Results.text().render("Recurso " + resourceString + " no encontrado").status(404);
+    }else{
+      return Results.redirect("/error/access/404");
+    }
   }
 }

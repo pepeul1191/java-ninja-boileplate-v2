@@ -54,7 +54,7 @@ public class Routes implements ApplicationRoutes {
     ///////////////////////////////////////////////////////////////////////
     // Index / Catchall shows index page
     ///////////////////////////////////////////////////////////////////////
-    router.GET().route("/.*").with(() -> Results.redirect("/error/access/404"));
+    router.GET().route("/.*").with(ErrorController::errorGET);
     router.POST().route("/.*").with(ErrorController::errorPOST);
   }
 }

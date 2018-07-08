@@ -47,6 +47,7 @@ public class UbicacionesHelper extends ApplicationHelper{
           "views/ubicaciones/tabla_departamento_view",
           "views/ubicaciones/ubicacion_view",
           "routes/ubicaciones",
+          "routes/ubicacionessssss",
         };
       case "produccion":
         return new String[] {
